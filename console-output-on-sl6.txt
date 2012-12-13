@@ -1,0 +1,38 @@
+$ celery worker --app=myproj -l info
+ 
+ -------------- celery@mydomain.com v3.0.12 (Chiastic Slide)
+---- **** ----- 
+--- * ***  * -- [Configuration]
+-- * - **** --- . broker:      amqp://guest@localhost:5672//
+- ** ---------- . app:         myproj.celery:0x1b8f0d0
+- ** ---------- . concurrency: 24 (processes)
+- ** ---------- . events:      OFF (enable -E to monitor this worker)
+- ** ---------- 
+- *** --- * --- [Queues]
+-- ******* ---- . celery:      exchange:celery(direct) binding:celery
+--- ***** ----- 
+
+[Tasks]
+  . myproj.tasks.add
+  . myproj.tasks.mul
+  . myproj.tasks.xsum
+
+[2012-12-12 17:32:21,101: ERROR/MainProcess] Unrecoverable error: OSError(38, 'Function not implemented')
+Traceback (most recent call last):
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/celery/worker/__init__.py", line 347, in start
+    component.start()
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/celery/concurrency/base.py", line 111, in start
+    self.on_start()
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/celery/concurrency/processes/__init__.py", line 77, in on_start
+    **self.options)
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/billiard/pool.py", line 799, in __init__
+    self._setup_queues()
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/billiard/pool.py", line 1055, in _setup_queues
+    self._inqueue = SimpleQueue()
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/billiard/queues.py", line 315, in __init__
+    self._rlock = Lock()
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/billiard/synchronize.py", line 157, in __init__
+    SemLock.__init__(self, SEMAPHORE, 1, 1)
+  File "/home/eliot/celery-example/venv/lib/python2.7/site-packages/billiard/synchronize.py", line 67, in __init__
+    kind, value, maxvalue, self._make_name(), unlink_immediately)
+OSError: [Errno 38] Function not implemented
