@@ -1,0 +1,9 @@
+celery==3.0.12
+billiard==2.7.3.19  # Used by celery
+python-dateutil==1.5  # Used by celery
+six==1.2.0  # Used by python-dateutil
+kombu==2.5.4  # Used by celery
+amqp==1.0.6  # Used by kombu
+anyjson==0.3.3  # Used by kombu
+
+-e ./
